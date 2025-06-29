@@ -4,23 +4,30 @@ let quotes = [
     { text: "Creativity is intelligence having fun.", category: "Inspiration" }
 ];
 
-const quoteDisplay = document.getElementById('quoteDisplay');
+const quoteDisplay = document.getElementById("quoteDisplay");
 const newQuoteBtn = document.getElementById("newQuote");
 
-function showRandomQuote() {
-    if quotes.length() === 0 {
-        quoteDisplay.textContent = 'No quotes available!';
+function showRandomQuote() {    
+    quoteDisplay.innerHTML = "";
+    if (quotes.length === 0) {
+        quoteDisplay.textContent = "No quotes available. Add one!";
         return;
     }
 
     const randomIndex = Math.floor(Math.random() * quotes.length);
-    const quote =quotes[randomIndex]
-    quoteDisplay.innerHTML = `
-        <blockquotes>"${quote.text}"</blockquotes>
-        <small>Category: ${quote.category}</small>`;
+    const quote = quotes[randomIndex];
+
+    const blockquote = document.createElement("blockquote");
+    blockquote.textContent = `"${quote.text}"`;
+
+    const category = document.createElement("small");
+    category.textContent = `Category: ${quote.category}`;
+
+    quoteDisplay.appendChild(blockquote);
+    quoteDisplay.appendChild(category);
 }
 
-function createAddQuoteForm() {
+function addQuote() {
     const textInput = document.getElementById("newQuoteText");
     const categoryInput = document.getElementById("newQuoteCategory");
 
@@ -30,11 +37,28 @@ function createAddQuoteForm() {
     if (!newText || !newCategory) {
         alert("Please enter both a quote and a category.");
         return;
+    }
 
-    quotes.push({ text: newText, category: newCategory });
+    const newQuote = { text: newText, category: newCategory };
+    quotes.push(newQuote);
+
+    displaySingleQuote(newQuote);
+
     textInput.value = "";
     categoryInput.value = "";
-    alert("Quote added successfully!");
+}
+
+function displaySingleQuote(quote) {
+    quoteDisplay.innerHTML = "";
+
+    const blockquote = document.createElement("blockquote");
+    blockquote.textContent = `"${quote.text}"`;
+
+    const category = document.createElement("small");
+    category.textContent = `Category: ${quote.category}`;
+
+    quoteDisplay.appendChild(blockquote);
+    quoteDisplay.appendChild(category);
 }
 
 newQuoteBtn.addEventListener("click", showRandomQuote);
