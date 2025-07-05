@@ -4,6 +4,9 @@ let quotes = [
     { text: "Creativity is intelligence having fun.", category: "Inspiration" }
 ];
 
+function saveQuotes() {
+    localStorage.setItem("quotes", JSON.stringify(quotes));
+
 const quoteDisplay = document.getElementById("quoteDisplay");
 const newQuoteBtn = document.getElementById("newQuote");
 
@@ -46,7 +49,6 @@ function createAddQuoteForm() {
 
     textInput.value = "";
     categoryInput.value = "";
-    localStorage.setItem(newText, newCategory);
 }
 
 function displaySingleQuote(quote) {
