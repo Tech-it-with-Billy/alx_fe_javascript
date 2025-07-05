@@ -46,6 +46,7 @@ function createAddQuoteForm() {
 
     textInput.value = "";
     categoryInput.value = "";
+    localStorage.setItem(newText, newCategory);
 }
 
 function displaySingleQuote(quote) {
@@ -63,3 +64,4 @@ function displaySingleQuote(quote) {
 
 newQuoteBtn.addEventListener("click", showRandomQuote);
 showRandomQuote();
+
