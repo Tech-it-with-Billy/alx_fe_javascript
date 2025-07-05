@@ -176,6 +176,23 @@ async function fetchQuotesFromServer() {
     }
 }
 
+async function pushQuotesToServer() {
+    try {
+        const response = await fetch(SERVER_API_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(quotes),
+        });
+        if (!response.ok) throw new Error("Failed to push quotes");
+        notifyUser("Quotes pushed to server successfully.");
+    } catch (err) {
+        notifyUser("Error pushing quotes: " + err.message);
+    }
+}
+
+
 // Show notification
 function notifyUser(message) {
     const notification = document.getElementById("notification");
