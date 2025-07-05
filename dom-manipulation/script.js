@@ -186,7 +186,7 @@ async function syncQuotes() {
         body: JSON.stringify(quotes),
         });
         if (!response.ok) throw new Error("Failed to push quotes");
-        notifyUser("Quotes pushed to server successfully.");
+        notifyUser("Quotes synced with server!");
     } catch (err) {
         notifyUser("Error pushing quotes: " + err.message);
     }
