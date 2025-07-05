@@ -145,7 +145,7 @@ function importFromJsonFile(event) {
 }
 
 // Sync with server (simulated)
-async function syncWithServer() {
+async function fetchQuotesFromServer() {
     try {
         const response = await fetch(SERVER_API_URL);
         const serverData = await response.json();
@@ -199,5 +199,5 @@ document.getElementById("categoryFilter").addEventListener("change", filterQuote
 loadQuotes();
 populateCategories();
 showRandomQuote();
-syncWithServer(); // initial sync
+fetchQuotesFromServer(); // initial sync
 setInterval(syncWithServer, 30000); // periodic sync every 30 seconds
