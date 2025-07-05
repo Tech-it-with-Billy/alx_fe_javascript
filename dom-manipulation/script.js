@@ -176,7 +176,7 @@ async function fetchQuotesFromServer() {
     }
 }
 
-async function pushQuotesToServer() {
+async function synQuotes() {
     try {
         const response = await fetch(SERVER_API_URL, {
         method: "POST",
